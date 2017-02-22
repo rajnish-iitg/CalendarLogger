@@ -350,7 +350,7 @@ class CompactCalendarController {
         }
         this.locale = locale;
         this.timeZone = timeZone;
-        this.eventsContainer = new EventsContainer(Calendar.getInstance(this.timeZone, this.locale));
+        this.eventsContainer = EventsContainer.getEventsContainer();
         // passing null will not re-init density related values - and that's ok
         init(null);
     }

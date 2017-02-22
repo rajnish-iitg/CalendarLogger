@@ -3,12 +3,13 @@ package sundeepk.github.com.sample;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ViewPager pager;
@@ -32,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
-
+        pager.addOnPageChangeListener(pageChangeListener);
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
@@ -48,6 +49,28 @@ public class MainActivity extends ActionBarActivity {
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
     }
+
+    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        int currentPosition = 0;
+
+        @Override
+        public void onPageSelected(int newPosition) {
+
+            FragmentLifecycle fragmentToShow = (FragmentLifecycle)adapter.getItem(newPosition);
+            fragmentToShow.onResumeFragment();
+
+            FragmentLifecycle fragmentToHide = (FragmentLifecycle)adapter.getItem(currentPosition);
+            fragmentToHide.onPauseFragment();
+
+            currentPosition = newPosition;
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) { }
+
+        public void onPageScrollStateChanged(int arg0) { }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

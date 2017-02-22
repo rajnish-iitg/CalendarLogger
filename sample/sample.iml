@@ -93,6 +93,8 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support.test/runner/0.4.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.0.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars" />
@@ -128,10 +130,12 @@
     <orderEntry type="library" exported="" scope="TEST" name="dexmaker-dx-1.4" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="dexmaker-mockito-1.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="mockito-core-1.10.17" level="project" />
+    <orderEntry type="library" exported="" name="cardview-v7-24.0.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="jsr305-2.0.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="objenesis-2.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="espresso-core-2.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-24.2.1" level="project" />
+    <orderEntry type="library" exported="" name="recyclerview-v7-24.0.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="runner-0.4.1" level="project" />
     <orderEntry type="library" exported="" name="support-core-ui-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-24.2.1" level="project" />

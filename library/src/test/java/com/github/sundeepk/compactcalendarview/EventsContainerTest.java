@@ -30,7 +30,7 @@ public class EventsContainerTest {
 
     @Before
     public void setUp(){
-        underTest = new EventsContainer(Calendar.getInstance());
+        underTest = EventsContainer.getEventsContainer();
     }
 
     @Test

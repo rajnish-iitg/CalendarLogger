@@ -8,6 +8,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     CharSequence titles[];
     int numbOfTabs;
+    CompactCalendarTab compactCalendarTab;
+    Tab2 tab2;
 
     public ViewPagerAdapter(FragmentManager fm, CharSequence titles[], int mNumbOfTabs) {
         super(fm);
@@ -18,10 +20,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            CompactCalendarTab compactCalendarTab = new CompactCalendarTab();
+            if (compactCalendarTab == null) {
+                compactCalendarTab = new CompactCalendarTab();
+            }
             return compactCalendarTab;
+
         } else {
-            Tab2 tab2 = new Tab2();
+            if (tab2 == null) {
+                tab2 = new Tab2();
+            }
+
             return tab2;
         }
     }

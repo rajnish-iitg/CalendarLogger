@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.EventsContainer;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.SimpleDateFormat;
@@ -31,7 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class CompactCalendarTab extends Fragment {
+public class CompactCalendarTab extends Fragment implements FragmentLifecycle{
 
     private static final String TAG = "MainActivity";
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
@@ -85,15 +87,16 @@ public class CompactCalendarTab extends Fragment {
         // compactCalendarView.setShouldShowMondayAsFirstDay(false);
 
         //set initial title
-        toolbar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+        toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
 
         //set title on calendar scroll
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
+                DateContainer.setCurrentSelectedDate(dateClicked);
                 toolbar.setTitle(dateFormatForMonth.format(dateClicked));
-                List<Event> bookingsFromMap = compactCalendarView.getEvents(dateClicked);
+                List<Event> bookingsFromMap = EventsContainer.getEventsContainer().getEventsFor(dateClicked.getTime());
                 Log.d(TAG, "inside onclick " + dateFormatForDisplaying.format(dateClicked));
                 if (bookingsFromMap != null) {
                     Log.d(TAG, bookingsFromMap.toString());
@@ -300,5 +303,15 @@ public class CompactCalendarTab extends Fragment {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
+    }
+
+    @Override
+    public void onPauseFragment() {
+
+    }
+
+    @Override
+    public void onResumeFragment() {
+
     }
 }

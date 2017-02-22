@@ -10,7 +10,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class EventsContainer {
 
@@ -18,7 +20,17 @@ public class EventsContainer {
     private Comparator<Event> eventsComparator = new EventComparator();
     private Calendar eventsCalendar;
 
-    public EventsContainer(Calendar eventsCalendar) {
+    private static EventsContainer eventsContainer;
+
+    public static synchronized EventsContainer getEventsContainer() {
+        if (eventsContainer == null) {
+            eventsContainer = new EventsContainer(Calendar.getInstance());
+        }
+
+        return eventsContainer;
+    }
+
+    private EventsContainer(Calendar eventsCalendar) {
         this.eventsCalendar = eventsCalendar;
     }
 
@@ -51,7 +63,7 @@ public class EventsContainer {
         }
     }
 
-    List<Event> getEventsFor(long epochMillis) {
+    public List<Event> getEventsFor(long epochMillis) {
         Events events = getEventDayEvent(epochMillis);
         if (events == null) {
             return new ArrayList<>();
